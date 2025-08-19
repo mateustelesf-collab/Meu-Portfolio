@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mateus teles — Portfólio</title>
+  <meta name="description" content="Portfólio minimalista e moderno de desenvolvedor web." />
+  <link rel="preconnect" href="https://files.fm" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #ffffff;
+      --bg-soft: #f6f7f9;
+      --text: #0b0f19;
+      --muted: #6b7280;
+      --accent: #6366f1; /* roxo-azulado suave */
+      --card: #ffffff;
+      --border: #e5e7eb;
+      --ring: rgba(99, 102, 241, .25);
+      --shadow: 0 10px 25px rgba(0,0,0,.06);
+      --success: #10b981;
+      --error: #ef4444;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0b0f19;
+        --bg-soft: #0f1526;
+        --text: #eef2ff;
+        --muted: #94a3b8;
+        --accent: #818cf8;
+        --card: #0f1629;
+        --border: #1f2a44;
+        --ring: rgba(129, 140, 248, .35);
+        --shadow: 0 10px 25px rgba(0,0,0,.35);
+        --success: #34d399;
+        --error: #f87171;
+      }
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0; font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, 'Apple Color Emoji', 'Segoe UI Emoji';
+      background: var(--bg); color: var(--text);
+      -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; height: auto; object-fit: cover; }
+    .container { width: min(1100px, 92%); margin: 0 auto; }
+
+    /* Header */
+    header { position: sticky; top: 0; z-index: 40; backdrop-filter: saturate(180%) blur(10px); background: color-mix(in oklab, var(--bg) 70%, transparent); border-bottom: 1px solid var(--border); }
+    .nav { display: flex; align-items: center; justify-content: space-between; padding: 14px 0; }
+    .brand { display: inline-flex; align-items: center; gap: 10px; font-weight: 700; letter-spacing: .2px; }
+    .brand-dot { width: 10px; height: 10px; border-radius: 999px; background: var(--accent); box-shadow: 0 0 0 6px var(--ring); }
+    .nav-links { display: flex; gap: 20px; align-items: center; }
+    .nav a { font-weight: 500; color: var(--muted); }
+    .nav a:hover { color: var(--text); }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 10px 14px; border: 1px solid var(--border); border-radius: 12px; font-weight: 600; background: var(--card); box-shadow: var(--shadow); transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease; }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(0,0,0,.10); border-color: color-mix(in oklab, var(--border), var(--accent) 30%); }
+    .btn-primary { background: var(--accent); color: white; border-color: color-mix(in oklab, var(--accent), black 10%); box-shadow: 0 12px 30px var(--ring); }
+    .btn-primary:hover { transform: translateY(-2px) scale(1.01); }
+    .btn-code { background: var(--bg-soft); border-color: var(--border); }
+    .btn-code:hover { background: color-mix(in oklab, var(--bg-soft), var(--accent) 10%); }
+
+    /* Hero */
+    .hero { padding: 84px 0 56px; display: grid; gap: 26px; text-align: center; }
+    .title { font-size: clamp(28px, 4.5vw, 46px); line-height: 1.05; margin: 0; letter-spacing: -.5px; }
+    .subtitle { font-size: clamp(14px, 2.6vw, 18px); color: var(--muted); margin: 6px auto 0; max-width: 750px; }
+    .cta-row { display: flex; gap: 12px; justify-content: center; margin-top: 16px; flex-wrap: wrap; }
+
+    /* Section */
+    section { padding: 56px 0; border-top: 1px solid var(--border); }
+    .section-title { font-size: 13px; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); margin: 0 0 22px; }
+
+    /* Projects */
+    .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 18px; }
+    .card { grid-column: span 6; background: var(--card); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; box-shadow: var(--shadow); transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease; }
+    .card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,.12); border-color: color-mix(in oklab, var(--border), var(--accent) 25%); }
+    .thumb { aspect-ratio: 16/9; background: linear-gradient(180deg, color-mix(in oklab, var(--bg-soft), black 4%), color-mix(in oklab, var(--bg-soft), black 10%)); display: grid; place-items: center; font-size: 12px; color: var(--muted); border-bottom: 1px solid var(--border); }
+    .thumb img { width: 100%; height: 100%; object-fit: cover; }
+    .card-body { padding: 16px; display: grid; gap: 8px; }
+    .card h3 { margin: 0; font-size: 18px; }
+    .meta { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; color: var(--muted); font-size: 13px; }
+    .tags { display: flex; gap: 8px; flex-wrap: wrap; }
+    .tag { font-size: 12px; border: 1px solid var(--border); background: var(--bg-soft); padding: 6px 8px; border-radius: 999px; }
+    .card-actions { display: flex; gap: 10px; margin-top: 6px; }
+    .card-actions .btn { padding: 8px 12px; border-radius: 10px; }
+
+    /* Project Gallery */
+    .project-gallery { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-top: 12px; }
+    .project-gallery img { border-radius: 8px; border: 1px solid var(--border); transition: transform 0.3s ease; }
+    .project-gallery img:hover { transform: scale(1.02); }
+
+    @media (max-width: 900px) { 
+      .card { grid-column: span 12; } 
+      .project-gallery { grid-template-columns: 1fr; }
+    }
+
+    /* About */
+    .about { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .about p { color: var(--muted); }
+    .skills { display: flex; gap: 8px; flex-wrap: wrap; }
+    .chip { border: 1px solid var(--border); border-radius: 999px; padding: 8px 10px; background: var(--bg-soft); font-size: 13px; }
+    
+    /* Profile section */
+    .profile-container {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+    .profile-image {
+      width: 200px;
+      height: 500px;
+      border-radius: 90%;
+      object-fit: cover;
+      border: 3px solid var(--border);
+      box-shadow: var(--shadow);
+    }
+    .profile-content {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    
+    @media (max-width: 900px) { 
+      .about { grid-template-columns: 1fr; } 
+      .profile-container {
+        grid-template-columns: 1fr;
+        justify-items: center;
+        text-align: center;
+      }
+      .profile-content {
+        align-items: center;
+      }
+    }
+
+    /* Contact */
+    form { display: grid; gap: 12px; max-width: 560px; }
+    input, textarea { width: 100%; padding: 12px 14px; background: var(--card); color: var(--text); border: 1px solid var(--border); border-radius: 12px; outline: none; font: inherit; }
+    input:focus, textarea:focus { border-color: color-mix(in oklab, var(--border), var(--accent) 40%); box-shadow: 0 0 0 6px var(--ring); }
+    textarea { min-height: 140px; resize: vertical; }
+
+    /* Footer */
+    footer { padding: 28px 0 60px; color: var(--muted); text-align: center; }
+
+    /* Simple mobile menu (optional) */
+    .menu-btn { display: none; }
+    @media (max-width: 760px) {
+      .menu-btn { display: inline-flex; }
+      .nav-links { display: none; position: absolute; right: 4%; top: 62px; background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 10px; flex-direction: column; width: 220px; box-shadow: var(--shadow); }
+      .nav-links.open { display: flex; }
+      .nav-links a { padding: 8px 10px; border-radius: 8px; }
+      .nav-links a:hover { background: var(--bg-soft); }
+    }
+
+    /* Status messages */
+    .status-message {
+      padding: 12px 16px;
+      border-radius: 12px;
+      margin-bottom: 16px;
+      display: none;
+    }
+    .status-success {
+      background-color: color-mix(in oklab, var(--success) 15%, transparent);
+      border: 1px solid color-mix(in oklab, var(--success) 30%, transparent);
+      color: var(--success);
+    }
+    .status-error {
+      background-color: color-mix(in oklab, var(--error) 15%, transparent);
+      border: 1px solid color-mix(in oklab, var(--error) 30%, transparent);
+      color: var(--error);
+    }
+    .loading {
+      opacity: 0.7;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#top" aria-label="Início">
+        <span class="brand-dot" aria-hidden="true"></span>
+        <span>Mateus teles</span>
+      </a>
+      <nav>
+        <button class="btn menu-btn" aria-label="Abrir menu" onclick="toggleMenu()">Menu</button>
+        <div class="nav-links" id="navLinks">
+          <a href="#projetos">Projetos de sites</a>
+          <a href="#sobre">Sobre mim</a>
+          <a href="#contato">Contato</a>
+          <a class="btn" href="#contato">Solicitar orçamento</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- HERO -->
+    <section class="hero container">
+      <h1 class="title">Desenvolvedor Web que transforma ideias em sites rápidos, responsivos e elegantes.</h1>
+      <p class="subtitle">Eu projeto e construo experiências digitais claras e objetivas. Foco em performance, acessibilidade e boas práticas. Confira meus projetos abaixo.</p>
+      <div class="cta-row">
+      </div>
+    </section>
+
+    <!-- PROJETOS -->
+    <section id="projetos">
+      <div class="container">
+        <h2 class="section-title">Projetos</h2>
+
+        <div class="grid">
+          <!-- PROJETO 1 - Restaurante Nori -->
+          <article class="card">
+            <div class="thumb">
+              <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Interior de restaurante japonês elegante">
+            </div>
+            <div class="card-body">
+              <h3>Projeto Restaurante Nori</h3>
+              <p class="meta">Site institucional com cardápio, reservas e layout responsivo.</p>
+              
+              <div class="project-gallery">
+                <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" alt="Prato de sushi variado">
+                <img src="https://images.unsplash.com/photo-1579871494447-9811cf80d66c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwa90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Chef preparando sushi">
+                <img src="https://images.unsplash.com/photo-1580828343064-fde4fc206bc6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80" alt="Bar de restaurante japonês">
+                <img src="https://images.unsplash.com/photo-1585032226651-759b368d7246?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1392&q=80" alt="Prato de ramen">
+              </div>
+              
+              <div class="card-actions">
+                <a class="btn btn-code" href="https://mateustelesf-collab.github.io/site-restaurante/" target="_blank" rel="noopener">
+                  Acesso ao Site
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- PROJETO 2 - Loja Estilo -->
+          <article class="card">
+            <div class="thumb">
+              <img src="https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Vitrine de loja de roupas moderna">
+            </div>
+            <div class="card-body">
+              <h3>Projeto Loja Estilo</h3>
+              <p class="meta">Landing page de e-commerce com vitrine e página de produto.</p>
+              
+              <div class="project-gallery">
+                <img src="https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Roupas em cabides">
+                <img src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1450&q=80" alt="Camisas sociais penduradas">
+                <img src="https://images.unsplash.com/photo-1543076447-215ad9ba6923?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" alt="Modelo vestindo roupa elegante">
+              </div>
+              
+              <div class="card-actions">
+                <a class="btn btn-code" href="https://mateustelesf-collab.github.io/site-roupas/" target="_blank" rel="noopener">
+                  Acesso ao Site
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- PROJETO 3 - Clínica Vida Plena -->
+          <article class="card">
+            <div class="thumb">
+              <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Recepção de clínica médica">
+            </div>
+            <div class="card-body">
+              <h3>Projeto Clínica Vida Plena</h3>
+              <p class="meta">Site informativo com serviços, equipe e formulário de contato.</p>
+              
+              <div class="project-gallery">
+                <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Médica sorrindo">
+                <img src="https://images.unsplash.com/photo-1581595219315-a187dd40c322?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Equipamentos médicos">
+                <img src="https://images.unsplash.com/photo-1505751172876-fa1923c5c528?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Médico examinando paciente">
+                <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Sala de espera de clínica">
+              </div>
+              
+              <div class="card-actions">
+                <a class="btn btn-code" href="https://mateustelesf-collab.github.io/site-cl-nica-vida-plena/" target="_blank" rel="noopener">
+                  Acesso ao Site
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- PROJETO 4 - FinançaPRO -->
+          <article class="card">
+            <div class="thumb">
+              <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1511&q=80" alt="Gráficos financeiros em tablet">
+            </div>
+            <div class="card-body">
+              <h3>Projeto FinançaPRO</h3>
+              <p class="meta">Espaço reservado para o próximo site real feito para cliente.</p>
+              
+              <div class="project-gallery">
+                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1415&q=80" alt="Dashboard financeiro">
+                <img src="https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1406&q=80" alt="Moedas e gráficos">
+                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Planilha financeira">
+                <img src="https://images.unsplash.com/photo-1604594849809-dfedbc827105?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Homem analisando finanças">
+              </div>
+              
+              <div class="card-actions">
+                <a class="btn btn-code" href="https://mateustelesf-collab.github.io/site-finan-as/" target="_blank" rel="noopener">
+                  Acesso ao Site
+                </a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SOBRE -->
+    <section id="sobre">
+      <div class="container">        
+        <div class="about">
+          <div>
+            <div class="profile-container">
+              <img src="https://files.fm/thumb_show.php?i=4kq7qkrk6d" alt="Foto de perfil de Mateus Teles" class="profile-image">
+              <div class="profile-content">
+                <h3>Mateus Teles</h3>
+                <p>Sou desenvolvedor front‑end focado em criar sites rápidos, acessíveis e com código bem organizado. Trabalho com layout responsivo, boas práticas de SEO básico e otimização de performance. Gosto de transformar necessidades de negócio em interfaces simples e objetivas.</p>
+              </div>
+            </div>
+            <div class="skills" aria-label="Minhas habilidades">
+              <span class="chip">HTML5</span>
+              <span class="chip">CSS3</span>
+              <span class="chip">JavaScript</span>
+              <span class="chip">Git/GitHub</span>
+              <span class="chip">Responsividade</span>
+              <span class="chip">Acessibilidade</span>
+            </div>
+          </div>
+          <div>
+            <div class="card" style="height:100%;">
+              <div class="thumb" style="aspect-ratio:auto; padding:28px; text-align:left; align-content:start;">
+                <strong style="display:block; margin-bottom:8px;">Destaques</strong>
+                <ul style="margin:0; padding-left:18px; line-height:1.8; color:var(--muted);">
+                  <li>4 projetos autorais (fictícios) completos</li>
+                  <li>Código limpo e comentado</li>
+                  <li>Entrega rápida e comunicação clara</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTATO -->
+    <section id="contato">
+      <div class="container">
+        <h2 class="section-title">Contato</h2>
+        
+        <div id="statusMessage" class="status-message"></div>
+        
+        <form id="contactForm" action="https://formspree.io/f/meozbaej" method="POST">
+          <input type="text" name="name" placeholder="Seu nome" required />
+          <input type="text" name="whatsapp" placeholder="WhatsApp" required />
+          <input type="email" name="email" placeholder="Seu e-mail" required />
+          <textarea name="message" placeholder="Escreva sua mensagem" required></textarea>
+          <button class="btn btn-primary" type="submit">Enviar mensagem</button>
+        </form>
+        <p class="subtitle" style="margin-top:16px;">Ou fale direto: <a href="mailto:mateustelesf@gmail.com">mateustelesf@gmail.com</a> · <a href="https://wa.me/5585994362864" target="_blank" rel="noopener">WhatsApp</a> <a href="#" target="_blank" rel="noopener"></a></p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">© <span id="year"></span> Mateus Teles. Todos os direitos reservados.</div>
+  </footer>
+
+  <script>
+    // ano automático
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // menu mobile simples
+    function toggleMenu(){
+      document.getElementById('navLinks').classList.toggle('open');
+    }
+
+    // rolagem suave para links de âncora (melhor UX)
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const target = document.querySelector(a.getAttribute('href'));
+        if(target){ e.preventDefault(); target.scrollIntoView({behavior:'smooth', block:'start'}); document.getElementById('navLinks')?.classList.remove('open'); }
+      });
+    });
+
+    // Processamento do formulário de contato
+    const form = document.getElementById('contactForm');
+    const statusMessage = document.getElementById('statusMessage');
+    
+    async function handleSubmit(event) {
+      event.preventDefault();
+      
+      // Mostrar estado de carregamento
+      form.classList.add('loading');
+      statusMessage.style.display = 'none';
+      
+      try {
+        const response = await fetch(event.target.action, {
+          method: form.method,
+          body: new FormData(form),
+          headers: {
+            'Accept': 'application/json'
+          }
+        });
+        
+        if (response.ok) {
+          showStatus('Mensagem enviada com sucesso! Entrarei em contato em breve.', 'success');
+          form.reset();
+        } else {
+          const data = await response.json();
+          if (data.errors) {
+            showStatus(data.errors.map(error => error.message).join(", "), 'error');
+          } else {
+            showStatus('Ocorreu um erro ao enviar a mensagem. Tente novamente.', 'error');
+          }
+        }
+      } catch (error) {
+        showStatus('Ocorreu um erro ao enviar a mensagem. Tente novamente.', 'error');
+      } finally {
+        form.classList.remove('loading');
+      }
+    }
+    
+    function showStatus(message, type) {
+      statusMessage.textContent = message;
+      statusMessage.className = `status-message status-${type}`;
+      statusMessage.style.display = 'block';
+      
+      // Rolar para a mensagem de status
+      statusMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+    
+    form.addEventListener("submit", handleSubmit);
+  </script>
+</body>
+</html>
